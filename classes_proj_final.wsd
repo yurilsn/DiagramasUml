@@ -1,0 +1,98 @@
+@startuml
+    
+    class Usuario{
+        - id
+        + nome
+        # email
+        + telefone
+        + consultarMetrica()
+        + selecionarProjeto()
+        - consultarCommit()
+        - consultarIssues()
+        - consultarPushRequests()
+        - consultarMergeRequest()
+        - consultarLegibilidade()
+        - consultarReusibilidade()
+        - consultarManutenibilidade()
+
+
+    }
+
+
+    class SonarQube{
+        - id
+        + legibilidade
+        + manutenibilidade
+        + reusibilidade
+        - coletarMetricaSonarQube()
+    }
+
+    class Github{
+        - id
+        + commit 
+        + issue 
+        + mergeRequest
+        + pushRequest
+        - coletarMetricaGithub()
+    }
+
+    class Relatorio{
+        - id
+        + dataGerado
+        + dataInicio
+        + dataFinal
+        - resultado
+        - gerarRelatorioSonarQube()
+        - gerarRelatorioGithub()
+
+    }
+
+    class Metrica{
+        - id
+        # valor
+        + dataColeta
+        # coletarMetrica()
+        # consultarMetrica()
+    }
+
+    class Atividade{
+        - id
+        + descricao
+        + status
+        + dataInicio
+        + dataFim
+        # criarPeriodo()
+        # consultarAtividades()
+        # finalizarAtividades()
+    }
+
+    class Projeto{
+        + nome
+        + descricao
+        # escolherProjeto()
+    }
+
+    class Desenvolve{
+        - id
+        + status
+        + branch
+
+    }
+
+
+
+    Relatorio "1*" <-- "1" Atividade : Resume
+    Atividade "1..*" o--- "1" Metrica : Defini
+    Projeto "1..*" o-- "1..*" Usuario : Trabalha
+    Metrica  <|--  SonarQube
+    Metrica  <|--  Github
+    Projeto "1..* " *--left- "1" Metrica : Analisa
+    (Projeto, Usuario) -- Desenvolve
+    IUsuario "1..*" ()--- "1..*" Metrica
+
+    Usuario "1 \n+Lider Projeto" -- "1..* \n+Dev" Usuario
+    
+
+
+
+@enduml

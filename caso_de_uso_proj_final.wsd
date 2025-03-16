@@ -1,0 +1,61 @@
+## Diagrama de Caso de Uso
+
+plantuml
+@startuml
+' skinparam linetype ortho
+left to right direction
+
+actor "Usuario" as usuario
+actor "Administrador" as adm
+
+usuario <|-- adm
+
+
+
+rectangle "sprint-lens" {
+
+    usecase "Coletar metricas do Github" as coleta_github
+    usecase "Coletar metricas do SonarQube" as coleta_sonarqube
+    usecase "Coletar metricas" as coleta
+    usecase "Consultar metricas do SonarQube" as consulta_sonarqube
+    usecase "Consultar metricas do Github" as consulta_github
+    usecase "Consultar metricas" as consulta
+    usecase "Gerar Relatórios" as gerar_relatorio
+    usecase "Criar período de atividade" as criar_periodo
+    usecase "Consultar atividades realizadas no período atual" as consultar_atividade
+    usecase "Finalizar atividades" as finaliza_atividades
+    usecase "Configurar parâmetros de busca" as parametro_busca
+    usecase "Escolher projetos" as escolher_projeto
+
+
+
+    consulta_sonarqube --|> consulta
+    consulta_github --|> consulta
+    coleta_github --|> coleta
+    coleta_sonarqube --|> coleta
+    consulta -[dashed]-> coleta : <<extend>>
+    coleta -[dashed]-> parametro_busca : <<extend>>
+    coleta -[dashed]-> criar_periodo : <<include>>
+    gerar_relatorio -[dashed]-> coleta : <<extend>>
+    consultar_atividade -[dashed]-> criar_periodo : <<extend>> 
+    criar_periodo -[dashed]-> escolher_projeto : <<extend>>
+    finaliza_atividades -[dashed]-> criar_periodo : <<extends>>
+    
+
+
+    usuario --> consulta
+    usuario --> gerar_relatorio
+    usuario --> coleta
+    adm --> criar_periodo
+    adm --> consultar_atividade
+    adm --> finaliza_atividades
+    adm --> parametro_busca
+    adm --> escolher_projeto
+    
+
+  
+
+    
+      
+}
+@enduml

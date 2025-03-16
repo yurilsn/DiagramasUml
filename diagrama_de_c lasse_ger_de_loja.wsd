@@ -1,0 +1,107 @@
+@startuml
+    
+    class EntradaDinheiro{
+        - valor
+    }
+
+
+    class SaidaDinheiro{
+        - valor
+    }
+
+    class Estoque{
+        - nome
+    }
+
+    class Item{
+        - nome
+        - preco
+    }
+
+    class Venda{
+        - valorTotal
+    }
+
+
+
+    Item "0..*" <-- "1" Venda
+
+    Item "0..*" <-- "1" Estoque
+
+
+    Venda "1" <-- "1" SaidaDinheiro
+
+    Venda "1" <-- "1" EntradaDinheiro
+
+
+
+
+
+
+
+
+
+@enduml
+
+
+' @startuml
+    
+'     class Colaborador{
+'         - id
+'         - valor 
+'         - chave
+'     }
+
+'     class OS{
+'         - numeroOs
+'         - periodo
+'         - indiceIas
+'         - indiceIap
+'         - indiceIpp
+'         - indiceIpa
+'         - indiceIqc
+'     }
+
+'     class Configuracao{
+'         - id
+'         - chave
+'         - valor
+'     }
+
+
+'     class Avaliacao{
+'         - notaIpp
+'     }
+
+'     class Metrica{
+'         - id
+'         - item
+'         - titulo
+'         - descricao
+'     }
+
+'     class Integracao{
+'         - id
+'         - nome
+'     }
+
+'     class Especificacao{
+'         - id
+'         - chave
+'         - valor
+'     }
+
+
+
+
+'     Metrica "1..*" <-d- "1" OS
+'     Metrica "1..*" --> "1..*" Colaborador
+'     OS "1" --> "1..*" Avaliacao
+'     Integracao "1" <-d- "1..*" Metrica
+'     Especificacao "1" --> "1" Metrica
+'     Colaborador "1" <-- "1..*" Avaliacao
+'     Integracao "1" --> "1" Configuracao 
+
+
+
+' @enduml

@@ -1,0 +1,40 @@
+## Diagrama de Caso de Uso
+
+plantuml
+@startuml
+' skinparam linetype ortho
+left to right direction
+
+actor "Mantedor do sistema" as mantendor
+actor "Cliente" as cliente
+
+mantendor <|-- cliente
+
+
+rectangle "sprint-lens" {
+
+    usecase "Gerenciar Estoque" as gerenciar_estoque
+    usecase "Gerenciar entrada e Saída de dinheiro" as gerenciar_dinheiro
+    usecase "Comprar Item" as comprar_item
+    usecase "Registrar venda de Item" as registrar_item
+    usecase "Calcular Saldo do Lanche" as calcular_saldo_lanche
+    usecase "Calcular Saldo do Mercado" as calcular_saldo_mercado
+    usecase "Pesquisar Produto" as pesquisar_produto
+    usecase "Selecionar Produto" as selecionar_produto
+    usecase "Trocar de Aba" as trocar_aba
+
+
+    mantendor --> gerenciar_estoque
+    mantendor --> gerenciar_dinheiro
+    mantendor --> registrar_item
+    mantendor --> calcular_saldo_lanche
+    mantendor --> calcular_saldo_mercado
+    mantendor --> trocar_aba
+    cliente --> comprar_item
+    cliente --> pesquisar_produto
+    cliente --> selecionar_produto
+
+    
+      
+}
+@enduml
