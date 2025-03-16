@@ -1,5 +1,6 @@
 @startuml
     
+rectangle "Atividades" {
     class Usuario{
         - id
         + nome
@@ -72,27 +73,26 @@
         # escolherProjeto()
     }
 
-    class Desenvolve{
+    class Desenvolvimento{
         - id
         + status
         + branch
-
     }
 
 
 
-    Relatorio "1*" <-- "1" Atividade : Resume
+    Relatorio "0..*" <-- "1" Atividade : Resume
     Atividade "1..*" o--- "1" Metrica : Defini
     Projeto "1..*" o-- "1..*" Usuario : Trabalha
     Metrica  <|--  SonarQube
     Metrica  <|--  Github
     Projeto "1..* " *--left- "1" Metrica : Analisa
-    (Projeto, Usuario) -- Desenvolve
+    (Projeto, Usuario) -- Desenvolvimento
     IUsuario "1..*" ()--- "1..*" Metrica
 
     Usuario "1 \n+Lider Projeto" -- "1..* \n+Dev" Usuario
     
-
+}
 
 
 @enduml

@@ -1,0 +1,70 @@
+@startuml
+
+
+rectangle "Atividades" {
+
+    object "relatorio_1 : Relatorio" as relatorio1
+    object "relatorio_2 : Relatorio" as relatorio2
+    object "relatorio_3 : Relatorio" as relatorio3
+    object "atividade_1 : Atividade" as atividade_1
+    object "atividade_2 : Atividade" as atividade_2
+    object "atividade_3 : Atividade" as atividade_3
+    object "metrica_1 : Metrica" as metrica_1
+    object "metrica_2 : Metrica" as metrica_2
+    object "projeto_1 : Projeto" as projeto_1
+    object "projeto_2 : Projeto" as projeto_2
+    object "projeto_3 : Projeto" as projeto_3
+    object "Desenvolvimento : desenvolvimento" as desenvolvimento
+    object "usuario_1 : Usuario" as usuario_1
+    object "usuario_2 : Usuario" as usuario_2
+    object "usuario_3 : Usuario" as usuario_3
+
+    diamond dev
+
+
+
+
+    relatorio1 -- atividade_1
+    relatorio2 -- atividade_1
+    relatorio3 -- atividade_2
+
+    atividade_1 -- metrica_1
+    atividade_2 -- metrica_1
+    atividade_3 -- metrica_2
+
+    metrica_1 -- projeto_1
+    metrica_1 -- projeto_2
+    metrica_2 -- projeto_2
+    metrica_2 -- projeto_3
+
+    usuario_1 -- metrica_1
+    usuario_2 -- metrica_2
+    usuario_2 -- metrica_1
+    usuario_3 -- metrica_2
+
+
+
+    usuario_1 -- projeto_1
+    usuario_1 -- projeto_2
+    usuario_2 -- projeto_2
+    usuario_2 -- projeto_3
+
+
+    usuario_1 -- usuario_1
+
+    projeto_1 -- dev
+    usuario_1 -- dev
+    dev -- desenvolvimento
+
+
+    
+
+
+
+
+
+    
+
+      
+}
+@enduml
