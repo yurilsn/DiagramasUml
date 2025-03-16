@@ -12,7 +12,7 @@ usuario <|-- adm
 
 
 
-rectangle "sprint-lens" {
+rectangle "Atividades" {
 
     usecase "Coletar metricas do Github" as coleta_github
     usecase "Coletar metricas do SonarQube" as coleta_sonarqube
