@@ -1,28 +1,135 @@
 @startuml
 
-
 rectangle "Atividades" {
 
-    object "relatorio_1 : Relatorio" as relatorio1
-    object "relatorio_2 : Relatorio" as relatorio2
-    object "relatorio_3 : Relatorio" as relatorio3
-    object "atividade_1 : Atividade" as atividade_1
-    object "atividade_2 : Atividade" as atividade_2
-    object "atividade_3 : Atividade" as atividade_3
-    object "metrica_1 : Metrica" as metrica_1
-    object "metrica_2 : Metrica" as metrica_2
-    object "projeto_1 : Projeto" as projeto_1
-    object "projeto_2 : Projeto" as projeto_2
-    object "projeto_3 : Projeto" as projeto_3
-    object "Desenvolvimento : desenvolvimento" as desenvolvimento
-    object "usuario_1 : Usuario" as usuario_1
-    object "usuario_2 : Usuario" as usuario_2
-    object "usuario_3 : Usuario" as usuario_3
+    object "relatorio_1 : Relatorio" as relatorio1 {
+        id = 1
+        dataGerado = "2025-03-16"
+        dataInicio = "2025-03-01"
+        dataFinal = "2025-03-15"
+        resultado = "Análise completa"
+    }
+    
+    object "relatorio_2 : Relatorio" as relatorio2 {
+        id = 2
+        dataGerado = "2025-03-10"
+        dataInicio = "2025-02-25"
+        dataFinal = "2025-03-05"
+        resultado = "Métricas satisfatórias"
+    }
+    
+    object "relatorio_3 : Relatorio" as relatorio3 {
+        id = 3
+        dataGerado = "2025-03-05"
+        dataInicio = "2025-02-20"
+        dataFinal = "2025-03-01"
+        resultado = "Revisão necessária"
+    }
+
+    object "atividade_1 : Atividade" as atividade_1 {
+        id = 101
+        descricao = "Implementação do módulo A"
+        status = "Concluído"
+        dataInicio = "2025-03-01"
+        dataFim = "2025-03-10"
+    }
+    
+    object "atividade_2 : Atividade" as atividade_2 {
+        id = 102
+        descricao = "Correção de bugs"
+        status = "Em andamento"
+        dataInicio = "2025-03-05"
+        dataFim = "2025-03-15"
+    }
+    
+    object "atividade_3 : Atividade" as atividade_3 {
+        id = 103
+        descricao = "Refatoração de código"
+        status = "Pendente"
+        dataInicio = "2025-03-12"
+        dataFim = "2025-03-20"
+    }
+
+    object "atividade_4 : Atividade" as atividade_4 {
+        id = 104
+        descricao = "Implementando função 2"
+        status = "Concluido"
+        dataInicio = "2025-03-11"
+        dataFim = "2025-03-25"
+    }
+
+    object "metrica_1 : Metrica" as metrica_1 {
+        id = 201
+        valor = "85%"
+        dataColeta = "2025-03-10"
+    }
+
+    object "metrica_2 : Metrica" as metrica_2 {
+        id = 202
+        valor = "78%"
+        dataColeta = "2025-03-08"
+    }
+
+    object "metrica_3 : Metrica" as metrica_3 {
+        id = 203
+        valor = "48%"
+        dataColeta = "2024-03-08"
+    }
+
+    object "projeto_1 : Projeto" as projeto_1 {
+        nome = "Sistema de Gestão"
+        descricao = "Projeto para controle de processos internos"
+    }
+    
+    object "projeto_2 : Projeto" as projeto_2 {
+        nome = "E-commerce"
+        descricao = "Loja virtual para venda de produtos"
+    }
+    
+    object "projeto_3 : Projeto" as projeto_3 {
+        nome = "App Mobile"
+        descricao = "Aplicativo para acompanhamento de pedidos"
+    }
+    object "projeto_4 : Projeto" as projeto_4 {
+        nome = "Sistema de geolocalização"
+        descricao = "Aplicativo para logística"
+    }
+
+    object "Desenvolvimento : desenvolvimento" as desenvolvimento {
+        id = 301
+        status = "Em progresso"
+        branch = "feature-x"
+    }
+
+    object "usuario_1 : Usuario" as usuario_1 {
+        id = 401
+        nome = "João Silva"
+        email = "joao@email.com"
+        telefone = "99999-9999"
+    }
+    
+    object "usuario_2 : Usuario" as usuario_2 {
+        id = 402
+        nome = "Maria Souza"
+        email = "maria@email.com"
+        telefone = "98888-8888"
+    }
+    
+    object "usuario_3 : Usuario" as usuario_3 {
+        id = 403
+        nome = "Carlos Lima"
+        email = "carlos@email.com"
+        telefone = "97777-7777"
+    }
+
+    object "usuario_4 : Usuario" as usuario_4 {
+        id = 404
+        nome = "Paulo bezerra"
+        email = "paulo@email.com"
+        telefone = "97123-7437"
+    }
 
     diamond dev
-
-
-
 
     relatorio1 -- atividade_1
     relatorio2 -- atividade_1
@@ -31,23 +138,28 @@ rectangle "Atividades" {
     atividade_1 -- metrica_1
     atividade_2 -- metrica_1
     atividade_3 -- metrica_2
+    atividade_4 -- metrica_3
+    
+    
 
     metrica_1 -- projeto_1
     metrica_1 -- projeto_2
     metrica_2 -- projeto_2
     metrica_2 -- projeto_3
+    metrica_3 -- projeto_4
 
     usuario_1 -- metrica_1
     usuario_2 -- metrica_2
     usuario_2 -- metrica_1
     usuario_3 -- metrica_2
-
+    usuario_4 -- metrica_3
 
 
     usuario_1 -- projeto_1
     usuario_1 -- projeto_2
     usuario_2 -- projeto_2
     usuario_2 -- projeto_3
+    usuario_4 -- projeto_4
 
 
     usuario_1 -- usuario_1
@@ -56,15 +168,6 @@ rectangle "Atividades" {
     usuario_1 -- dev
     dev -- desenvolvimento
 
-
-    
-
-
-
-
-
-    
-
-      
 }
+
 @enduml
