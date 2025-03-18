@@ -1,0 +1,24 @@
+@startuml
+' COLETAR MÉTRICAS DO GITHUB
+
+": Usuario" as usuario -> ": Sistema" as sistema : solicitarColeta()
+activate usuario
+
+sistema -> ": GitHub API" as github : obterMetricas()
+activate sistema
+activate github
+
+github -> github : verificarDisponibilidade()
+
+github --> sistema : [disponivel = "sim"] retornarMetricas(dadosMetricas)
+deactivate github
+
+sistema -> sistema : processarMetricas(dadosMetricas)
+
+sistema --> usuario : exibirMetricas(dadosMetricas)
+deactivate sistema
+
+deactivate usuario
+
+sistema -> github : [disponivel = "não"] registrarFalha()
+@enduml

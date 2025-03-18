@@ -1,0 +1,23 @@
+@startuml
+' GERAR RELATÓRIOS
+
+": usuario" as usuario -> ": sistema" as sistema : solicitarGeracaoRelatorio(tipoRelatorio)
+activate usuario
+
+sistema -> ": banco de dados" as bd: coletarDadosRelatorio(tipoRelatorio)
+activate sistema
+activate bd
+
+bd -> bd: buscarDados(tipoRelatorio)
+
+bd --> sistema: retornarDados(dadosRelatorio)
+deactivate bd
+
+sistema -> sistema: processarDados()
+sistema -> sistema: formatarRelatorio()
+
+sistema --> usuario: exibirRelatorio(relatorio)
+deactivate sistema
+
+deactivate usuario
+@enduml
