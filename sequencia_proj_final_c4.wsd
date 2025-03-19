@@ -1,0 +1,28 @@
+@startuml
+' CONSULTAR MÉTRICAS
+
+"usuario : Usuario" as usuario -> ": sistema" as sistema : solicitarConsultaMetricas()
+activate usuario
+activate sistema
+
+
+sistema -// "sonarqube_api : SonarQube" as sonarQube : consultarMetricasSonarQube()
+activate sistema
+
+sistema -// "github_api : GitHub" as github : consultarMetricasGitHub()
+activate sistema
+
+sonarQube -> sonarQube : processarConsulta()
+github -> github : processarConsulta()
+
+sonarQube --> sistema : retornarMetricasSonarQube(dadosSonarQube)
+deactivate sonarQube
+
+github --> sistema : retornarMetricasGitHub(dadosGitHub)
+deactivate github
+
+deactivate sistema
+
+sistema -> usuario: exibirMetricas(dadosSonarQube, dadosGitHub)
+deactivate usuario
+@enduml

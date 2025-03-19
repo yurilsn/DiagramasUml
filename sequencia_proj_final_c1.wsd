@@ -6,7 +6,7 @@ plantuml
 
 
 
-    ": usuario" as usuario -> ": barra de pesquisa" as pesquisa : pesquisaProjetos(nomeProjeto)
+    "usuario : Usuario" as usuario -> ": barra de pesquisa" as pesquisa : pesquisaProjetos(nomeProjeto)
     activate usuario
 
     pesquisa -> ": banco de dados" as bd: e:=existe? \nconsultarBanco(nomeProjeto)
