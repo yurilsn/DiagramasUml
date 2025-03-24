@@ -81,6 +81,13 @@ rectangle "Atividades" {
         + branch
     }
 
+    class Configuracao{
+        - id
+        - url
+        - token
+        + editarConfiguracao
+    }
+
 
 
     Relatorio "0..*" <-- "1" Atividade : Resume
@@ -91,6 +98,8 @@ rectangle "Atividades" {
     Projeto "1..* " *--left- "1" Metrica : Analisa
     (Projeto, Usuario) -- Desenvolvimento
     IUsuario "1..*" ()--- "1..*" Metrica
+
+    Configuracao "1" -- "1" Metrica
 
     Usuario "1 \n+Lider Projeto" -- "1..* \n+Dev" Usuario
     

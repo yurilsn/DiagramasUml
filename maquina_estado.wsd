@@ -1,0 +1,35 @@
+@startuml
+' Coletar Métricas do GitHub
+    
+    
+    state "Validar Api" as valida_api
+    state "Buscando Metricas" as busca_metrica
+    state "Analizar Metricas" as analiza_metricas
+    state "Persistir Metricas no Banco de Dados" as persist_metricas
+    state fim_2 <<end>>
+
+
+
+    valida_api : entry/ Validando Período
+    valida_api : do/ Verificando Retorno da Api
+
+    busca_metrica : entry/ Definir Período de Busca
+    busca_metrica : do/ Colher Metricas da Api
+
+    analiza_metricas : do/ Separar Commits, Issues e Pull Requests
+
+    persist_metricas : do / Inserir e Commitar Métricas no Banco de dados
+
+
+
+    [*] --> valida_api : /clickBuscarMetricas(inicioAtividade, fimAtividade)
+    valida_api --> [*] : validaRequiscao(urlApi)[erro 404] / Erro de Requisição
+    valida_api --> busca_metrica : validaRequiscao(urlApi, inicioAtividade, fimAtividade)[200 ok] / Buscar Métricas
+    busca_metrica --> analiza_metricas : metricasColhidas(metricas)[Metricas da Api Recuperadas] / Separar Metricas
+    analiza_metricas --> persist_metricas : metricasSeparadas(metricas)[Metricas Separadas Por Commit, Issue e PR]/ Salvar Dados no Banco de Dados
+
+    persist_metricas --> fim_2
+
+
+
+@enduml

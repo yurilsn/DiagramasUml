@@ -2,6 +2,13 @@
 
 rectangle "Atividades" {
 
+
+    object "configuracao : Configuracao" as configuracao {
+        id = 1
+        url = "http://github.com/"
+        token = "sidufIUsdfNsdfHoisfds"
+    }
+
     object "relatorio_1 : Relatorio" as relatorio1 {
         id = 1
         dataGerado = "2025-03-16"
@@ -167,6 +174,8 @@ rectangle "Atividades" {
     projeto_1 -- dev
     usuario_1 -- dev
     dev -- desenvolvimento
+
+    configuracao -- metrica_3
 
 }
 

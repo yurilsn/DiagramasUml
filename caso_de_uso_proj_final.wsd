@@ -33,13 +33,13 @@ rectangle "Atividades" {
     consulta_github --|> consulta
     coleta_github --|> coleta
     coleta_sonarqube --|> coleta
-    consulta -[dashed]-> coleta : <<extend>>
-    coleta -[dashed]-> parametro_busca : <<extend>>
-    coleta -[dashed]-> criar_periodo : <<include>>
-    gerar_relatorio -[dashed]-> coleta : <<extend>>
-    consultar_atividade -[dashed]-> criar_periodo : <<extend>> 
+    consulta -[dashed]-> coleta : <<include>>
+    coleta -[dashed]-> parametro_busca : <<include>>
+    coleta -[dashed]-> criar_periodo : <<extend>>
+    gerar_relatorio -[dashed]-> coleta : <<include>>
+    consultar_atividade -[dashed]-> criar_periodo : <<include>> 
     criar_periodo -[dashed]-> escolher_projeto : <<extend>>
-    finaliza_atividades -[dashed]-> criar_periodo : <<extends>>
+    finaliza_atividades -[dashed]-> criar_periodo : <<include>>
     
 
 
