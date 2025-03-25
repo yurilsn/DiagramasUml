@@ -1,20 +1,22 @@
 @startuml
 ' CONSULTAR ATIVIDADES NO PERÍODO ATUAL
 
-": usuario" as usuario -> ": sistema" as sistema : solicitarConsultaAtividades()
+"Usuario : usuario" as usuario -> "Atividade : atividade" as atividade : solicitarConsultaAtividades()
 activate usuario
+activate atividade
 
-sistema --> ": banco de dados" as bd : obterAtividadesPeriodoAtual()
-activate sistema
+atividade --> ": banco de dados" as bd : obterAtividadesPeriodoAtual()
 activate bd
 
 bd -> bd : buscarAtividades()
+activate bd
 
-bd --> sistema : retornarAtividades(dadosAtividades)
+deactivate bd
+bd --> atividade : retornarAtividades(dadosAtividades)
 deactivate bd
 
-deactivate sistema
 
-sistema -> usuario : exibirAtividades(dadosAtividades)
+atividade --> usuario : exibirAtividades(dadosAtividades)
+deactivate atividade
 deactivate usuario
 @enduml

@@ -1,28 +1,41 @@
 @startuml
-' CONSULTAR MÉTRICAS
+' COLETAR MÉTRICAS
 
-"usuario : Usuario" as usuario -> ": sistema" as sistema : solicitarConsultaMetricas()
+"usuario : Usuario" as usuario -> "metrica : Metrica" as sistema : solicitaColetaMetricas(inicio, fim)
 activate usuario
 activate sistema
 
 
-sistema -// "sonarqube_api : SonarQube" as sonarQube : consultarMetricasSonarQube()
-activate sistema
+sistema -// "sonarqube_api : SonarQube" as sonarQube : coletarMetricasSonarQube(inicio, fim)
+activate sonarQube
 
-sistema -// "github_api : GitHub" as github : consultarMetricasGitHub()
-activate sistema
+sistema -// "github_api : GitHub" as github : coletarMetricasGitHub(inicio, fim)
+activate github
 
-sonarQube -> sonarQube : processarConsulta()
-github -> github : processarConsulta()
+sonarQube -> sonarQube : b:=processarMetricas(inicio, fim)
+activate sonarQube
 
-sonarQube --> sistema : retornarMetricasSonarQube(dadosSonarQube)
 deactivate sonarQube
+sonarQube ->": banco de dados" as bd : [fim < metricaAtual=true] persistirMetricas(metricas)
 
-github --> sistema : retornarMetricasGitHub(dadosGitHub)
+
+github -> github : c:=processarMetricas(inicio, fim)
+activate github
+
 deactivate github
+github -> bd : [fim < metricaAtual=true] persistirMetricas(metricas)
 
+
+bd --> usuario : retornarMensagemDeSuceso()
+
+' sonarQube --> sistema : [fim < metricaAtual=true]retornarMetricasSonarQube(dadosSonarQube)
+
+' deactivate github
+' github --> sistema : [fim < metricaAtual=true]retornarMetricasGitHub(dadosGitHub)
+' deactivate github
+' sistema --> usuario: retornarTodasMetricas(dadosSonarQube, dadosGitHub)
+deactivate sonarQube
+deactivate github
 deactivate sistema
-
-sistema -> usuario: exibirMetricas(dadosSonarQube, dadosGitHub)
 deactivate usuario
 @enduml

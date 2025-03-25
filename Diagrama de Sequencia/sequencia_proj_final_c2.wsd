@@ -1,31 +1,31 @@
 @startuml
 ' GERAR RELATÓRIOS
 
-"usuario : Usuario" as usuario -> ": sistema" as sistema : solicitarGeracaoRelatorio(tipoRelatorio)
+"usuario : Usuario" as usuario -> "Relatorio : relatorio" as relatorio : solicitarGeracaoRelatorio(tipoRelatorio)
 activate usuario
 
-sistema -> ": banco de dados" as bd: coletarDadosRelatorio(tipoRelatorio)
-activate sistema
+activate relatorio
+relatorio -> ": banco de dados" as bd: coletarDadosRelatorio(tipoRelatorio)
 activate bd
 
 bd -> bd: buscarDados(tipoRelatorio)
 activate bd
 
-bd --> sistema: [dadosEncontrados = "sim"] retornarDados(dadosRelatorio)
+bd --> relatorio: [dadosEncontrados = "sim"] retornarDados(dadosRelatorio)
 deactivate bd
 
-sistema -> sistema: processarDados()
-activate sistema
+relatorio -> relatorio: processarDados()
+activate relatorio
 
-deactivate sistema
+deactivate relatorio
 
-sistema -> sistema: formatarRelatorio()
-activate sistema
+relatorio -> relatorio: formatarRelatorio()
+activate relatorio
 
-deactivate sistema
+deactivate relatorio
 
-sistema --> usuario: exibirRelatorio(relatorio)
-deactivate sistema
+relatorio --> usuario: exibirRelatorio(relatorio)
+deactivate relatorio
 
 deactivate usuario
 
