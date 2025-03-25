@@ -1,5 +1,8 @@
 @startuml
-' CONSULTAR MÉTRICAS DO GITHUB
+
+
+mainframe CONSULTAR MÉTRICAS DO GITHUB
+
 
 "usuario : Usuario" as usuario -> "metrica : Metrica" as metrica : solicitarColeta()
 activate usuario

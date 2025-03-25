@@ -2,9 +2,7 @@
 
 plantuml
 @startuml
-' ESCOLHER PROJETO
-
-
+mainframe ESCOLHER PROJETO
 
     "usuario : Usuario" as usuario -> "projeto : Projeto" as projeto : pesquisaProjetos(nomeProjeto)
     activate usuario

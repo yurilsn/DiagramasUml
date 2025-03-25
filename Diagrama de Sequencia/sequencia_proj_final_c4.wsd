@@ -1,5 +1,6 @@
 @startuml
-' COLETAR MÉTRICAS
+mainframe COLETAR MÉTRICAS
+
 
 "usuario : Usuario" as usuario -> "metrica : Metrica" as sistema : solicitaColetaMetricas(inicio, fim)
 activate usuario

@@ -1,5 +1,6 @@
 @startuml
-' GERAR RELATÓRIOS
+mainframe GERAR RELATÓRIOS
+
 
 "usuario : Usuario" as usuario -> "Relatorio : relatorio" as relatorio : solicitarGeracaoRelatorio(tipoRelatorio)
 activate usuario

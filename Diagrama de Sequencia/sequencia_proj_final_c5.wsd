@@ -1,5 +1,6 @@
 @startuml
-' CONSULTAR ATIVIDADES NO PERÍODO ATUAL
+mainframe CONSULTAR ATIVIDADES NO PERÍODO ATUAL
+
 
 "Usuario : usuario" as usuario -> "Atividade : atividade" as atividade : solicitarConsultaAtividades()
 activate usuario
