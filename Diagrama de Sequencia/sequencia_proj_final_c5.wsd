@@ -2,7 +2,7 @@
 mainframe CONSULTAR ATIVIDADES NO PERÍODO ATUAL
 
 
-"Usuario : usuario" as usuario -> "Atividade : atividade" as atividade : solicitarConsultaAtividades()
+"Usuario : usuario" as usuario -> "Atividade : atividade" as atividade : solicitarConsultaAtividades(data)
 activate usuario
 activate atividade
 
