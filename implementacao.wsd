@@ -1,0 +1,44 @@
+@startuml
+' Definição dos nós de hardware
+
+' skinparam linetype ortho
+left to right direction
+
+
+node "<<device>> \nServidor Web" as servidor_web {
+    component "Interface Web" as Inteface
+}
+
+node "<<device>> \nClient Host" as client {
+    artifact "Browser" as browser
+}
+
+node "<<device>> \nServidor da Aplicação" as aplicacao {
+    component "Lógica de Negócio Atividades" as gerir_atividades
+    component "Lógica de Negócio Consulta de Matricas" as coletar_metricas
+
+
+    component "API de Comunicação" as api_comunicacao
+}
+
+node "<<device>> \nServidor GitLab" as gitlab {
+    component "Coletor de Métricas GitLab" as coletor_gitlab
+}
+
+node "<<device>> \nServidor SonarQube" as sonarqube {
+    component "Coletor de Métricas SonarQube" as coletor_sonarqube
+}
+
+node "<<device>> \nServidor Oracle" as oracle {
+    database "Banco de Dados" as database
+}
+
+' Comunicação entre componentes e nós
+
+servidor_web --- client : <<http>>
+servidor_web --- aplicacao : <<http>> 
+aplicacao --- oracle : <<http>>
+aplicacao --- gitlab: <<http>>
+aplicacao --- sonarqube: <<http>>
+
+@enduml

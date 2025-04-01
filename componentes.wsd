@@ -10,13 +10,11 @@ package "Lógica de Negócio de Métricas" {
     component ConsultarMetricaSonarQube.java as consultar_metrica_sonarqube
     component ColetarMetricaGithub.java as coletar_metrica_github
     component ColetarMetricaSonarQube.java as coletar_metrica_sonarqube
-    database Oracle
     
     interface IconsultarMetricaGitHub as " "
     interface IconsultarMetricaSonarqube as " "
     interface IcoletarMetricaGitHub as " "
     interface IcoletarMetricaSonarqube as " "
-    interface Ioracle as " "
     interface IconsultarMetricas as " "
 
 
@@ -24,7 +22,6 @@ package "Lógica de Negócio de Métricas" {
     IconsultarMetricaSonarqube - consultar_metrica_sonarqube
     IcoletarMetricaGitHub - coletar_metrica_github
     IcoletarMetricaSonarqube - coletar_metrica_sonarqube
-    Oracle - Ioracle
 
     consultar_metrica - IconsultarMetricas
 
@@ -34,10 +31,7 @@ package "Lógica de Negócio de Métricas" {
     coletar_metrica ..> IcoletarMetricaGitHub
     coletar_metrica ..> IcoletarMetricaSonarqube
 
-    consultar_metrica_github ..> Ioracle
-    consultar_metrica_sonarqube ..> Ioracle
-    coletar_metrica_sonarqube ..> Ioracle
-    coletar_metrica_github ..> Ioracle
+
 
 
 }
@@ -49,12 +43,25 @@ package "Lógica de Negócio de Atividades" {
     component Atividades.java as atividades
 
     interface Iatividades as " "
+    interface IcriarAtividades as " "
+
 
     atividades - Iatividades
+    criar_atividade - IcriarAtividades
 
     finalizar_atividade ..> Iatividades
     consultar_atividade ..> Iatividades
     criar_atividade ..> Iatividades
+
+}
+
+package "DatabaseMetricas"{
+    database Oracle
+
+    interface Ioracle as " "
+
+    Oracle - Ioracle
+
 
 }
 
@@ -86,10 +93,15 @@ package "Lógica de Negócio de Projetos" {
 }
 
 
+    consultar_metrica_github ..> Ioracle
+    consultar_metrica_sonarqube ..> Ioracle
+    coletar_metrica_sonarqube ..> Ioracle
+    coletar_metrica_github ..> Ioracle
+
 consultar_metrica ..> IconfigurarParametros
 coletar_metrica ..> IconfigurarParametros
 gerar_relatorio ..> IconsultarMetricas
-consultar_atividade ..> criar_atividade
+consultar_atividade ..> IcriarAtividades
 criar_atividade ..> IescolherProjeto
 projetos ..> Ioracle
 
