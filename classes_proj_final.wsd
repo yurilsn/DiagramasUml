@@ -2,7 +2,13 @@
     
 ' skinparam linetype ortho
 
-rectangle "Atividades" {
+rectangle "Sistema Gerência de Atividades \n Alunos:\n Yuri Luiz Silva do Nascimento - 202204940035 \nAllan Marcelo Trindade de Amorin - 202204940027" {
+
+    interface Alunos {
+        - Yuri Luiz Silva do Nascimento
+
+    }
+
     class Usuario{
         - id
         + nome
@@ -107,3 +113,19 @@ rectangle "Atividades" {
 
 
 @enduml
+
+
++-----------------------------------------------+
+| [Voltar] CADASTRAR JOGADOR                    |
++-----------------------------------------------+
+| Nome: [__________________________]            |
+| Apelido: [______________________]             |
+| Posição: [▼ 3 - Zagueiro]                 |
+| Equipe: [▼ São Bernardo]                      |
++-----------------------------------------------+
+| Estatísticas (opcional):                      |
+| Gols: [__] | Cartões Amarelos: [__]           |
+| Cartões Vermelhos: [__]                       |
++-----------------------------------------------+
+| [Salvar] [Cancelar]                           |
++-----------------------------------------------+

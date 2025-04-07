@@ -1,37 +1,64 @@
 @startuml
-    
-    class EntradaDinheiro{
-        - valor
+
+    enum TipoMovimentacao{
+        - saida
+        - Entrada
+
+    }
+
+    enum Estalecimento{
+        - Loja
+        - Lanche
+
     }
 
 
-    class SaidaDinheiro{
-        - valor
+    class Usuario{
+        -id
+        - nome
+
+    }
+
+    class Movimentacao{
+        - dataMov
     }
 
     class Estoque{
-        - nome
+        - nomeProdut
+        - qtdProdutos
     }
 
-    class Item{
+    class Produto{
         - nome
-        - preco
+        - valor
     }
 
     class Venda{
-        - valorTotal
+        - qtdTotal
+        - qtdProdutos
     }
 
+    Venda -- Movimentacao
+    Usuario -- Venda
+    Venda -- Produto
+    Movimentacao -- Produto
+    Movimentacao -- Estoque
+    Estoque -- Produto
+    Usuario -- Movimentacao
+
+    TipoMovimentacao -- Movimentacao
+    Estalecimento -- Movimentacao
 
 
-    Item "0..*" <-- "1" Venda
-
-    Item "0..*" <-- "1" Estoque
 
 
-    Venda "1" <-- "1" SaidaDinheiro
 
-    Venda "1" <-- "1" EntradaDinheiro
+    ' Produto "0..*" <-- "1" Venda
+
+    ' Produto "0..*" <-- "1" Estoque
+
+
+    ' Venda "1" <-- "1" Movimentacao
 
 
 
